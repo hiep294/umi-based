@@ -33,3 +33,5 @@ update naming => ok
 +review redux-saga: take, put, select, takeLast (use debounce: https://medium.com/@anuhosad/debouncing-events-with-react-b8c405c33273)
 
 ## UMIJS based, based on Quan.Hoang
+
+## For started: remove src/models/indexPageModel.ts, src/pages/IndexPage, clear README.md
