@@ -30,5 +30,6 @@ update naming => ok
 +useSelector, useDispatch instead of connect
 +useParams, useHistory
 +use action creators, and remove error message 'prefixNamespace'
++review redux-saga: take, put, select, takelast
 
 ## UMIJS based, based on Quan.Hoang

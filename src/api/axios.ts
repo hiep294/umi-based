@@ -26,8 +26,10 @@ axiosInstance.interceptors.response.use(
   error => Promise.reject(error),
 );
 
-export const sendGet = (url: string, params?: any) =>
-  axiosInstance.get(url, { params });
+export const sendGet = (url: string, params?: any) => {
+  console.log('send Get running', configs.API_DOMAIN);
+  return axiosInstance.get(url, { params });
+};
 export const sendPost = (url: string, params?: any, queryParams?: any) =>
   axiosInstance.post(url, params, { params: queryParams });
 export const sendPut = (url: string, params?: any) =>
