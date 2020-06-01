@@ -23,8 +23,9 @@ https://react-redux.js.org/api/hooks
 update naming => ok
 + test useSelector => ok to use free style
 + test lessJS to use ID => not using, so continue to use given design
-+ pagination: usually, it can be 100 records=> will be ok, does not need to view so many, does not need go to next records. found out a way to go up when click pagination. => waiting
-+ dynamic Sider
++ pagination: usually, it can be 100 records=> will be ok, does not need to view so many, does not need go to next records. found out a way to go up when click pagination. => ok
++ dynamic Sider => ok
++ review lodash
 
 * finally: 
 +useSelector, useDispatch instead of connect
