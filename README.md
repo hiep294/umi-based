@@ -30,6 +30,6 @@ update naming => ok
 +useSelector, useDispatch instead of connect
 +useParams, useHistory
 +use action creators, and remove error message 'prefixNamespace'
-+review redux-saga: take, put, select, takelast
++review redux-saga: take, put, select, takeLast (use debounce: https://medium.com/@anuhosad/debouncing-events-with-react-b8c405c33273)
 
 ## UMIJS based, based on Quan.Hoang
