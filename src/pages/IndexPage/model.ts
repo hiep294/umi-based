@@ -23,7 +23,7 @@ const indexPageModel = {
         //
         // DEMO: call; send request
         // const result = yield call(sendGet, '/api/users');
-        // console.log('ss', result); => {config, data, headers, request, status, statusText}
+        // console.log('ss', result); //=> {config, data, headers, request, status, statusText}
         //
         // DEMO: all: send many requests
         // const results = yield all([
@@ -37,7 +37,7 @@ const indexPageModel = {
         // put as dispatch
         //
         // DEMO-fail: takeLastest, other solution: lodash debounce
-        console.log('From debounce');
+        // console.log('From debounce');
       } catch (e) {
         message.error('Cannot connect to server!');
         console.log(e.message);

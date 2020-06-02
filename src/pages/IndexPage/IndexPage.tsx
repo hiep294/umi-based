@@ -13,7 +13,7 @@ export default () => {
       <button
         onClick={_.debounce(() => {
           dispatch({ type: 'indexPage/increaseCountEffect' });
-        }, 200)}
+        }, 0)}
       >
         +
       </button>
