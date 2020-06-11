@@ -27,6 +27,12 @@ const indexPageModel = {
     increaseCountTwo(state: any, action: any) {
       state.countTwo = state.countTwo + 1;
     },
+    pushNewObject(state: any, action: any) {
+      state.items.push({
+        id: Date.now(),
+        value: Date.now(),
+      });
+    },
   },
   effects: {
     *increaseCountEffect(
