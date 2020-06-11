@@ -34,7 +34,6 @@ export default ({ children }: any) => {
               margin: 0,
               minHeight: 'auto',
               backgroundColor: 'white',
-              display: 'flex',
             }}
           >
             {children}

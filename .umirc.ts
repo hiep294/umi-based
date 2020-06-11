@@ -24,7 +24,7 @@ export default defineConfig({
         {
           path: '/index',
           exact: true,
-          component: '@/pages/IndexPage/IndexPage',
+          component: '@/pages/IndexPage',
         },
       ],
     },

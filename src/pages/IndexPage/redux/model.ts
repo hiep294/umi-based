@@ -1,15 +1,31 @@
 import Cookies from 'js-cookie';
 import { message } from 'antd';
 import { sendGet } from '@/api/axios';
+import _ from 'lodash';
 
 const indexPageModel = {
   namespace: 'indexPage',
   state: {
     count: 0,
+    countTwo: 1,
+    items: [
+      {
+        id: 'a',
+        value: 'hi',
+      },
+      {
+        id: 'b',
+        value: 'ho',
+      },
+    ],
+    itemDetailId: 'b',
   },
   reducers: {
     increaseCount(state: any, action: any) {
       state.count = state.count + 1;
+    },
+    increaseCountTwo(state: any, action: any) {
+      state.countTwo = state.countTwo + 1;
     },
   },
   effects: {
@@ -33,7 +49,7 @@ const indexPageModel = {
         // console.log(results); => [result1, result2]
         //
         // DEMO: put as dispatch
-        // yield put({ type: 'indexPage/increaseCount' });
+        yield put({ type: 'indexPage/increaseCount' });
         // put as dispatch
         //
         // DEMO-fail: takeLastest, other solution: lodash debounce
@@ -43,7 +59,15 @@ const indexPageModel = {
         console.log(e.message);
       }
     },
-
+    increaseTakeLastestAndDelay: [
+      function*(action: any, { effects }: any) {
+        // console.log(others);
+        setTimeout(() => {
+          console.log('running');
+        }, 1000);
+      },
+      { type: 'takeLatest' },
+    ],
     logout(action: any) {
       Cookies.remove('token');
       action.history.push('/login');
