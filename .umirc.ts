@@ -1,35 +1,43 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-  dva: {
-    immer: true,
-    hmr: false,
-  },
   nodeModulesTransform: {
     type: 'none',
   },
-  hash: true,
+  dva: {
+    immer: true,
+  },
   routes: [
-    { path: '/', exact: true, redirect: '/index' },
-    {
-      path: '/login',
-      exact: true,
-      component: '@/pages/LoginPage/LoginPage',
-    },
     {
       path: '/',
       exact: false,
-      component: '@/wrappers/CmsWrapper/CmsWrapper',
+      component: '@/wrappers/RootWrapper',
       routes: [
         {
-          path: '/index',
-          exact: true,
-          component: '@/pages/IndexPage',
+          path: '/auth',
+          exact: false,
+          component: '@/wrappers/AuthWrapper',
+          routes: [
+            {
+              path: '/auth/login',
+              exact: true,
+              component: '@/pages/Login',
+            },
+          ],
+        },
+        {
+          path: '/',
+          exact: false,
+          component: '@/wrappers/AppWrapper',
+          routes: [
+            {
+              path: '/',
+              exact: true,
+              component: '@/pages/Home',
+            },
+          ],
         },
       ],
     },
   ],
-  // theme: {
-  //   '@primary-color': '#008a67',
-  // },
 });

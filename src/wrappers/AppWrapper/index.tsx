@@ -2,9 +2,8 @@ import React from 'react';
 import { Layout } from 'antd';
 import Cookies from 'js-cookie';
 
-import CmsHeader from './CmsHeader/CmsHeader';
 import { Redirect } from 'umi';
-import CmsSider from './CmsSider/CmsSider';
+import AppSider from './AppSider';
 
 const { Content } = Layout;
 
@@ -19,13 +18,14 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 }
 
 export default ({ children }: any) => {
-  const isAuthenticated = Cookies.get('token');
-  if (!isAuthenticated) return <Redirect to="/login" />;
+  // if (!isAuthenticated) {
+  //   return <Redirect to="/auth/login" />;
+  // }
   return (
     <Layout style={{ height: '100vh' }}>
-      <CmsHeader />
+      {/* <CmsHeader /> */}
       <Layout>
-        <CmsSider />
+        <AppSider />
         <Layout style={{ padding: '24px' }}>
           <Content
             className="site-layout-background"
