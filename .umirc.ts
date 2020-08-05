@@ -35,6 +35,11 @@ export default defineConfig({
               exact: true,
               component: '@/pages/Home',
             },
+            {
+              path: '/products',
+              exact: true,
+              component: '@/pages/Products',
+            },
           ],
         },
       ],

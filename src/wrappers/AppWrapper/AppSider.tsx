@@ -22,8 +22,17 @@ const subMenus: Array<ISubMenus> = [
   {
     items: [
       {
-        key: '/index', // like URL
+        key: '/', // like URL
         children: 'Home',
+        icon: <HomeOutlined />,
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        key: '/products',
+        children: 'Product',
         icon: <HomeOutlined />,
       },
     ],
@@ -55,25 +64,6 @@ const subMenus: Array<ISubMenus> = [
 let selectedMenuItem: any;
 let openedSubMenu: any;
 
-const resetSelectedMenuItemAndOpenedSubMenu = () => {
-  const pathname = location.pathname;
-  const pathnameParts = pathname.split('/');
-
-  // console.log(pathnameParts[1]);
-
-  openedSubMenu = subMenus.find(subMenu => {
-    const menuItem = subMenu.items.find(
-      item => `/${pathnameParts[1]}` === item.key,
-    );
-    if (menuItem) {
-      selectedMenuItem = menuItem;
-      return true;
-    }
-    return false;
-  });
-  // console.log(openedSubMenu);
-};
-
 /**
  * @facts Menu of Antd receives defaultSelectedKeys, defaultOpenKeys only in the first time., use openKeys, and selectedKeys insteaded
  * @test_cases
@@ -89,7 +79,7 @@ const CmsSider = () => {
     selectedKeys: [''],
   });
 
-  const onOpenChange = (openKeys: Array<string>) => {
+  const onOpenChange = (openKeys: Array<any>) => {
     setState({ ...state, openKeys });
   };
 
@@ -111,8 +101,6 @@ const CmsSider = () => {
     }
   }, [location.pathname]);
 
-  // console.log(state);
-
   return useMemo(
     () => (
       <Sider
@@ -124,7 +112,7 @@ const CmsSider = () => {
         <Menu
           mode="inline"
           selectedKeys={state.selectedKeys}
-          onOpenChange={onOpenChange}
+          onOpenChange={(openKeys: any) => onOpenChange(openKeys)}
           openKeys={state.openKeys}
           style={{ height: '100%', borderRight: 0 }}
         >
@@ -150,3 +138,22 @@ const CmsSider = () => {
 };
 
 export default CmsSider;
+
+const resetSelectedMenuItemAndOpenedSubMenu = () => {
+  const pathname = location.pathname;
+  const pathnameParts = pathname.split('/');
+
+  // console.log(pathnameParts[1]);
+
+  openedSubMenu = subMenus.find(subMenu => {
+    const menuItem = subMenu.items.find(
+      item => `/${pathnameParts[1]}` === item.key,
+    );
+    if (menuItem) {
+      selectedMenuItem = menuItem;
+      return true;
+    }
+    return false;
+  });
+  // console.log(openedSubMenu);
+};
