@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 import { Redirect } from 'umi';
 import AppSider from './AppSider';
+import AppHeader from './AppHeader';
 
 const { Content } = Layout;
 
@@ -24,6 +25,7 @@ export default ({ children }: any) => {
   return (
     <Layout style={{ height: '100vh' }}>
       {/* <CmsHeader /> */}
+      <AppHeader />
       <Layout>
         <AppSider />
         <Layout style={{ padding: '24px' }}>
