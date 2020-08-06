@@ -71,7 +71,7 @@ let openedSubMenu: any;
  * 2. click a button in a page and change location, also can show exactly open Sub Menu and selected Menu Item
  * @found_bug location.pathname.include(key) => not really work, because there can include 2 keys like, /todos and /todos2
  */
-const CmsSider = () => {
+const AppSider = () => {
   const history = useHistory();
 
   const [state, setState] = useState({
@@ -137,8 +137,6 @@ const CmsSider = () => {
   );
 };
 
-export default CmsSider;
-
 const resetSelectedMenuItemAndOpenedSubMenu = () => {
   const pathname = location.pathname;
   const pathnameParts = pathname.split('/');
@@ -157,3 +155,5 @@ const resetSelectedMenuItemAndOpenedSubMenu = () => {
   });
   // console.log(openedSubMenu);
 };
+
+export default AppSider;

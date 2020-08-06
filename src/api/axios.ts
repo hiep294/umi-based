@@ -1,6 +1,6 @@
 import Axios from 'axios';
-import Cookies from 'js-cookie';
-import configs from '../config/config';
+import configs from '@/config';
+import { token } from './authToken';
 
 const axiosInstance = Axios.create({
   timeout: 3 * 60 * 1000,
@@ -9,19 +9,10 @@ const axiosInstance = Axios.create({
 axiosInstance.interceptors.request.use(
   config => {
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer ${Cookies.get('token')}`;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
-  },
-  error => Promise.reject(error),
-);
-axiosInstance.interceptors.response.use(
-  response => {
-    // invalid token
-    // if (typeof (response.data) !== 'object') {
-    //   Cookies.remove('token');
-    //   history.push('/');
-    // }
-    return response;
   },
   error => Promise.reject(error),
 );

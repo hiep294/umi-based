@@ -1,12 +1,12 @@
 import React from 'react';
 import { Layout } from 'antd';
-import Cookies from 'js-cookie';
-
-import { Redirect } from 'umi';
+// import Cookies from 'js-cookie';
+// import { Redirect } from 'umi';
 import AppSider from './AppSider';
-import AppHeader from './AppHeader';
+import styles from '@/styles/AppWrapper.less';
+import { Menu } from 'antd';
 
-const { Content } = Layout;
+const { Content, Header } = Layout;
 
 // for remove 'prefixNamespace' error message
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -24,8 +24,14 @@ export default ({ children }: any) => {
   // }
   return (
     <Layout style={{ height: '100vh' }}>
-      {/* <CmsHeader /> */}
-      <AppHeader />
+      <Header className={styles.header}>
+        <div className={styles.logo} />
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+          <Menu.Item key="1">nav 1</Menu.Item>
+          <Menu.Item key="2">nav 2</Menu.Item>
+          <Menu.Item key="3">nav 3</Menu.Item>
+        </Menu>
+      </Header>
       <Layout>
         <AppSider />
         <Layout style={{ padding: '24px' }}>
