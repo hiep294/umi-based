@@ -61,16 +61,6 @@ const subMenus: Array<ISubMenus> = [
   },
 ];
 
-let selectedMenuItem: any;
-let openedSubMenu: any;
-
-/**
- * @facts Menu of Antd receives defaultSelectedKeys, defaultOpenKeys only in the first time., use openKeys, and selectedKeys insteaded
- * @test_cases
- * 1. didMount, show exactly open Sub Menu, and selected Menu Item
- * 2. click a button in a page and change location, also can show exactly open Sub Menu and selected Menu Item
- * @found_bug location.pathname.include(key) => not really work, because there can include 2 keys like, /todos and /todos2
- */
 const AppSider = () => {
   const history = useHistory();
 
@@ -85,16 +75,27 @@ const AppSider = () => {
 
   useEffect(() => {
     try {
-      resetSelectedMenuItemAndOpenedSubMenu();
-      const newOpenKey = openedSubMenu.key || '';
-      const indexedOfNewOpenKey = state.openKeys.indexOf(newOpenKey);
+      const pathname = location.pathname;
+      const pathnameParts = pathname.split('/');
+      let selectedKey = '';
+      const newOpenKey =
+        subMenus.find(subMenu => {
+          const menuItem = subMenu.items.find(
+            item => `/${pathnameParts[1]}` === item.key,
+          );
+          if (menuItem) {
+            selectedKey = menuItem.key;
+            return true;
+          }
+          return false;
+        })?.key || '';
       const newOpenKeys =
-        indexedOfNewOpenKey >= 0
+        state.openKeys.indexOf(newOpenKey) >= 0
           ? [...state.openKeys]
           : [...state.openKeys, newOpenKey];
       setState({
         openKeys: newOpenKeys,
-        selectedKeys: [selectedMenuItem.key || ''],
+        selectedKeys: [selectedKey],
       });
     } catch (error) {
       console.log(error.message);
@@ -135,25 +136,6 @@ const AppSider = () => {
     ),
     [state.openKeys.length, state.selectedKeys[0]],
   );
-};
-
-const resetSelectedMenuItemAndOpenedSubMenu = () => {
-  const pathname = location.pathname;
-  const pathnameParts = pathname.split('/');
-
-  // console.log(pathnameParts[1]);
-
-  openedSubMenu = subMenus.find(subMenu => {
-    const menuItem = subMenu.items.find(
-      item => `/${pathnameParts[1]}` === item.key,
-    );
-    if (menuItem) {
-      selectedMenuItem = menuItem;
-      return true;
-    }
-    return false;
-  });
-  // console.log(openedSubMenu);
 };
 
 export default AppSider;
