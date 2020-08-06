@@ -1,13 +1,14 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox, Layout } from 'antd';
+import { Form, Input, Button, Checkbox, Layout, Row, Card } from 'antd';
 import { history } from 'umi';
+import styles from '@/styles/Login.less';
 
 const layout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 16 },
+  labelCol: { span: 6 },
+  wrapperCol: { span: 18 },
 };
 const tailLayout = {
-  wrapperCol: { offset: 4, span: 16 },
+  wrapperCol: { offset: 0, span: 24 },
 };
 
 const Login = () => {
@@ -16,47 +17,40 @@ const Login = () => {
     history.push('/');
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
-
   return (
-    <Layout
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignContent: 'center',
-        padding: 20,
-      }}
-    >
-      <h1 style={{ textAlign: 'center' }}>Login</h1>
-      <Form
-        {...layout}
-        name="basic"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item label="Username" name="username">
-          <Input />
-        </Form.Item>
-
-        <Form.Item label="Password" name="password">
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </Layout>
+    <div className={styles.loginContainer}>
+      <Card bordered className={styles.loginForm}>
+        <Form onFinish={onFinish} {...layout}>
+          <Row justify="center">
+            <h2>LOGIN</h2>
+          </Row>
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: 'Username is required!' }]}
+            labelAlign="left"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Password is required!' }]}
+            labelAlign="left"
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item name="remember" valuePropName="checked">
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button block type="primary" htmlType="submit">
+              LOGIN
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
+    </div>
   );
 };
 
