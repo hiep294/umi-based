@@ -1,4 +1,4 @@
-if (!process.env.API_DOMAIN) {
+if (!process.env.APP_ENV) {
   // eslint-disable-next-line no-alert
   window.alert(
     'Please config .env! (copy .env.example to .env in root project folder!)',
